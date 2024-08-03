@@ -10,13 +10,19 @@ var factory = new ConnectionFactory
 var connection = factory.CreateConnection();
 
 using var channel = connection.CreateModel();
+channel.ExchangeDeclare("direct_logs", ExchangeType.Direct, true);
 channel.BasicQos(0, 1, false);
-channel.ExchangeDeclare("logsFanout", ExchangeType.Fanout, true);
 
-// Geçici bir kuyruk oluştur
+// Geçici bir kuyruk oluşturuyoruz
 var queueName = channel.QueueDeclare().QueueName;
-// Kuyruğu exchange'e bağla
-channel.QueueBind(queueName, "logsFanout", string.Empty);
+// Tüketicinin ilgilendiği yönlendirme anahtarları
+string[] severities = { "Error", "Warning" };
+
+foreach (var severity in severities)
+{
+    // Kuyruğu exchange'e ve yönlendirme anahtarına göre bağla
+    channel.QueueBind(queueName, "direct_logs", severity);
+}
 
 var consumer = new EventingBasicConsumer(channel);
 
@@ -31,6 +37,6 @@ consumer.Received += (sender, eventArgs) =>
     Thread.Sleep(1500);
 };
 
-channel.BasicConsume("helloRabbitMq", false, consumer);
+channel.BasicConsume(queueName, false, consumer);
 
 Console.ReadLine();
