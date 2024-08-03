@@ -18,3 +18,23 @@
 - **Mesaj Yayını**: Üretici, mesajları exchange'e gönderir. Fanout exchange, bu mesajları bağlı tüm kuyruklara dağıtır.
 
   Fanout exchange, bir mesajın birden fazla hedefe ulaştırılması gerektiği durumlar için ideal bir çözümdür. Bu yapı, mesajların geniş kitlelere hızlı bir şekilde dağıtılmasını sağlar.
+
+<br><br>
+
+**Direct Exchange**, RabbitMQ'da bir tür değişim (exchange) modelidir ve mesajların belirli bir yönlendirme anahtarı (routing key) ile tam eşleşen kuyruğa gönderilmesini sağlar. Bu model, mesajların belirli bir hedefe hassas bir şekilde yönlendirilmesi gerektiğinde kullanılır.
+
+**Direct Exchange Özellikleri**
+- **Yönlendirme Anahtarı (Routing Key)**: Mesajın hangi kuyruğa yönlendirileceğini belirlemek için kullanılır. Her kuyruk, belirli bir yönlendirme anahtarı ile değişime bağlanır.
+
+- **Tam Eşleşme**: Direct exchange, mesajın yönlendirme anahtarını ve kuyruğun bağlı olduğu yönlendirme anahtarını karşılaştırır ve yalnızca tam eşleşen kuyruklara mesajları gönderir.
+
+- **Uygulama Senaryoları**: Tipik olarak, hata ayıklama ve loglama gibi belirli mesajların belirli tüketicilere veya hizmetlere yönlendirilmesi gereken senaryolarda kullanılır.
+
+ **Örnek Açıklamaları**
+- **Exchange Tanımlama**: Hem üretici hem de tüketici, "direct_logs" adında bir direct exchange tanımlar.
+
+- **Yönlendirme Anahtarı Kullanımı**: Üretici, mesajları "Error", "Warning", veya "Info" gibi belirli yönlendirme anahtarları ile gönderir. Tüketiciler, ilgilendikleri yönlendirme anahtarları ile değişime bağlanarak yalnızca bu anahtarlarla eşleşen mesajları alır.
+
+- **Kuyruk Bağlama**: Tüketici, her bir yönlendirme anahtarı için kuyrukları exchange'e bağlar. Bu, direct exchange'in belirli mesajları doğru kuyruklara yönlendirmesini sağlar.
+
+Direct exchange, mesajların hassas bir şekilde belirli tüketicilere veya hizmetlere yönlendirilmesi gerektiği senaryolar için ideal bir çözümdür. Mesajların doğrudan belirli hedeflere iletilmesi gerektiğinde, direct exchange kullanarak bu işlemi etkin bir şekilde yönetebilirsiniz.
