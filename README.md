@@ -1,3 +1,24 @@
+
+**Default Exchange**, RabbitMQ'da varsayılan olarak sağlanan bir değişim (exchange) türüdür. Bu değişim, mesajların yönlendirilmesinde basit ve doğrudan bir yol sağlar ve genellikle doğrudan (direct) exchange türünde çalışır.
+
+**Default Exchange Özellikleri**
+- **Varsayılan Yönlendirme**: Default exchange, adı boş olan ("") bir direct exchange'dir. Bu nedenle, mesajları belirli bir kuyruk adı ile doğrudan yönlendirmek için kullanılır.
+
+- **Direct Yönlendirme**: Mesajlar, routing key olarak belirtilen kuyruk adlarına doğrudan yönlendirilir. Bu, mesajların belirli bir kuyruk adıyla eşleşmesi ve yönlendirilmesi anlamına gelir.
+
+- **Kullanım Kolaylığı**: Default exchange, üreticiler tarafından yönlendirme anahtarı olarak kuyruk adını doğrudan kullanarak mesajların gönderilmesini sağlar. Bu, basit senaryolar için kullanışlıdır.
+
+**Örnek Açıklamaları**
+- **Default Exchange Kullanımı**: exchange: "" olarak ayarlandığında, mesajlar varsayılan exchange'e gönderilir. Bu, routing key olarak belirtilen kuyruk adını doğrudan kullanır.
+
+- **Yönlendirme Anahtarı**: routingKey: "my_queue" ayarı, mesajın doğrudan "my_queue" kuyruk adına yönlendirilmesini sağlar.
+
+- **Kuyruk Tanımlama**: Tüketici, mesajların alınabilmesi için "my_queue" adında bir kuyruk tanımlar ve bu kuyruğa abone olur.
+
+ Default Exchange, RabbitMQ'daki en basit değişim türlerinden biridir ve mesajların hızlı bir şekilde doğrudan kuyruklara yönlendirilmesini sağlar. Bu, özellikle basit yönlendirme senaryoları için kullanışlıdır. 
+
+<br><br>
+
 **Fanout Exchange**, RabbitMQ'da bir tür değişim (exchange) modelidir ve mesajları doğrudan tüm bağlı kuyruklara yayınlamak için kullanılır. Bu model, bir mesajın aynı anda birden fazla kuyruğa dağıtılması gerektiğinde kullanılır ve genellikle yayınlama (broadcast) senaryoları için uygundur.
 
 **Fanout Exchange Özellikleri**
