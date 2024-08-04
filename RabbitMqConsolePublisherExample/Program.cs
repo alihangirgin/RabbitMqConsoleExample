@@ -10,13 +10,13 @@ var factory = new ConnectionFactory
 var connection = factory.CreateConnection();
 
 using var channel = connection.CreateModel();
-channel.QueueDeclare("helloRabbitMq", true, false, false);
+channel.QueueDeclare("my_queue", true, false, false);
 
 for (int i = 0; i < 50; i++)
 {
     var message = $"hello world{i}";
     var messageBytes = Encoding.UTF8.GetBytes(message);
-    channel.BasicPublish(string.Empty, "helloRabbitMq", null, messageBytes);
+    channel.BasicPublish(string.Empty, "my_queue", null, messageBytes);
     Console.WriteLine($"Message Sent:{i}");
 
 }

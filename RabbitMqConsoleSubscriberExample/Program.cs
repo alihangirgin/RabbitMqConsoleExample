@@ -25,6 +25,6 @@ consumer.Received += (sender, eventArgs) =>
     Thread.Sleep(1500);
 };
 
-channel.BasicConsume("helloRabbitMq", false, consumer);
+channel.BasicConsume("my_queue", false, consumer);
 
 Console.ReadLine();
