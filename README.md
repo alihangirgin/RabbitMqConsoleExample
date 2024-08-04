@@ -9,7 +9,7 @@
 - **Uygulama Senaryoları**: Genellikle, bildirimler, yayınlar veya güncellemelerin geniş bir kitleye dağıtılması gerektiğinde kullanılır. Örneğin, bir chat uygulamasında mesajların tüm kullanıcılar arasında paylaşılması için fanout exchange kullanılabilir.
 
 **Örnek Açıklamaları**
-- **Exchange Tanımlama**: Hem üretici hem de tüketici, "logsFanout" adında bir fanout exchange tanımlar. Tüketiciler, mesajları almak için bu exchange'e bağlanırlar.
+- **Exchange Tanımlama**: Hem üretici hem de tüketici, "fanout-logs" adında bir fanout exchange tanımlar. Tüketiciler, mesajları almak için bu exchange'e bağlanırlar.
 
 - **Geçici Kuyruk**: Tüketici, fanout exchange'den mesajları almak için bir geçici kuyruk oluşturur (channel.QueueDeclare().QueueName). Bu kuyruk, tüketici bağlantısını kapattığında otomatik olarak silinir.
 
