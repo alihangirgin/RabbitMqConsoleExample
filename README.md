@@ -1,3 +1,60 @@
+**QueueDeclare**, RabbitMQ'da bir kuyruk oluşturmak veya var olan bir kuyruğun özelliklerini almak için kullanılan bir yöntemdir. Bu yöntem, bir kuyruk oluşturulurken gerekli olan çeşitli seçenekleri ayarlamanıza olanak tanır. Kuyruklar, mesajların gönderilip alındığı yerlerdir ve RabbitMQ sistemindeki temel veri yapılarından biridir.
+
+**QueueDeclare Parametreleri**
+
+**queue**: Kuyruğun adını belirtir. Boş bir string ("") verilirse, RabbitMQ rastgele bir kuyruk adı oluşturur ve bu adı geri döndürür.
+
+**durable**: Kuyruğun kalıcı olup olmadığını belirtir. true ayarlandığında, kuyruk sunucu yeniden başlatıldığında da var olmaya devam eder. Ancak, bu yalnızca kuyruğun kalıcı hale getirilmesini sağlar; mesajlar kalıcı hale getirilmez.
+
+**exclusive**: Kuyruğun yalnızca bağlantı kurulduğunda ve bağlantı kesildiğinde silinecek şekilde yalnızca bu bağlantıya özel olup olmadığını belirtir. true ayarlandığında, kuyruk yalnızca o bağlantıya özel olur ve bağlantı kapatıldığında silinir.
+
+**autoDelete**: Kuyruğun, tüketici kalmadığında otomatik olarak silinip silinmeyeceğini belirtir. true ayarlandığında, kuyruğun son tüketicisi bağlantısını kestiğinde kuyruk silinir.
+
+**arguments**: Kuyruğun özelliklerini daha ayrıntılı ayarlamak için bir sözlük nesnesi kullanılır. Örneğin, TTL (time-to-live), mesaj sınırları gibi özel ayarlar yapılabilir.
+
+<br><br>
+
+**BasicPublish**, RabbitMQ'da bir üreticinin (producer) mesajları bir değişime (exchange) göndermesini sağlayan bir yöntemdir. Bu yöntem, mesajın hangi değişime gönderileceğini ve değişimin mesajı hangi kuyruğa yönlendireceğini belirler. BasicPublish, RabbitMQ'daki mesajlaşma sürecinin temel bir parçasıdır ve mesajların doğru bir şekilde iletilmesini sağlar.
+
+**BasicPublish Parametreleri**
+
+**exchange**: Mesajın gönderileceği değişimin adını belirtir. Boş bir string ("") verilirse, RabbitMQ varsayılan değişim (default exchange) kullanılır. Varsayılan değişim, mesajları doğrudan routingKey ile belirtilen kuyruk adına yönlendirir.
+
+**routingKey**: Mesajın hedef kuyruğunu belirlemek için kullanılan anahtardır. Fanout değişim türü dışında, diğer değişim türlerinde (Direct, Topic, Headers) yönlendirme anahtarı kullanılır.
+
+**basicProperties**: Mesajın özelliklerini (örneğin, mesaj kalıcılığı, başlıklar, vb.) belirlemek için kullanılan bir nesnedir. Bu, IBasicProperties arayüzü ile sağlanır.
+
+**body**: Gönderilecek mesajın içeriğidir. Bu, genellikle bir byte dizisi (byte[]) olarak gönderilir.
+
+<br><br>
+
+**BasicConsum**e, RabbitMQ'da bir tüketicinin belirli bir kuyruğa abone olmasını sağlayan bir yöntemdir. Bu yöntem, kuyruktaki mesajları asenkron olarak alarak işlemeye başlar. Tüketici, kuyruğa gelen mesajları bir olay veya bir geri çağırma fonksiyonu aracılığıyla alır ve işler.
+
+**BasicConsume Parametreleri**
+
+**queue**: Tüketicinin abone olacağı kuyruğun adını belirtir.
+
+**autoAck**: Otomatik onaylama olup olmadığını belirtir. true olarak ayarlandığında, RabbitMQ mesajın teslim edildiğini kabul eder ve mesajı kuyruktan siler. false olarak ayarlandığında, mesajın işlenmesi tamamlandığında manuel olarak onaylanması gerekir.
+
+**consumer**: Mesajları almak için kullanılacak tüketici nesnesini belirtir. Genellikle EventingBasicConsumer sınıfı kullanılır.
+
+<br><br>
+
+**BasicQos** yöntemi, RabbitMQ'daki tüketicilerin mesajları nasıl aldığını kontrol etmenizi sağlayan bir yöntemdir. Bu yöntem, mesajların adil bir şekilde dağıtılmasını ve tüketicilerin aşırı yüklenmesini önlemeye yardımcı olur. Özellikle mesajların çok hızlı bir şekilde kuyruktan tüketiciye aktarılması durumunda faydalıdır.
+
+**BasicQos Parametreleri**
+
+**prefetchSize**: Mesajların önceden alınacak toplam boyutunu belirtir. Genellikle 0 olarak ayarlanır, bu da mesaj boyutunun sınırsız olduğunu gösterir.
+
+**prefetchCount**: Tüketiciye önceden gönderilecek maksimum mesaj sayısını belirtir. Bu değer genellikle 1 olarak ayarlanır, bu da her bir tüketicinin aynı anda yalnızca bir mesaj almasını ve işlediği sürece başka mesaj almamasını sağlar.
+
+**global**: Bu parametre, prefetchSize ve prefetchCount ayarlarının kanal düzeyinde mi yoksa tüketici düzeyinde mi uygulanacağını belirtir. true olarak ayarlanırsa kanal düzeyinde, false olarak ayarlanırsa tüketici düzeyinde uygulanır.
+
+<br><br>
+
+**Exchange Türleri**
+
+<br>
 
 **Default Exchange**, RabbitMQ'da varsayılan olarak sağlanan bir değişim (exchange) türüdür. Bu değişim, mesajların yönlendirilmesinde basit ve doğrudan bir yol sağlar ve genellikle doğrudan (direct) exchange türünde çalışır.
 
