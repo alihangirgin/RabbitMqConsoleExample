@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqConsolePublisherExample", "RabbitMqConsolePublisherExample\RabbitMqConsolePublisherExample.csproj", "{6F3119B1-5595-428C-9642-AFCCCAA487DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqDefaultExchange.Publisher", "RabbitMqConsolePublisherExample\RabbitMqDefaultExchange.Publisher.csproj", "{6F3119B1-5595-428C-9642-AFCCCAA487DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqConsoleSubscriberExample", "RabbitMqConsoleSubscriberExample\RabbitMqConsoleSubscriberExample.csproj", "{B6B41F86-F792-40C4-90C7-FAB21FDA2F48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqDefaultExchange.Subscriber", "RabbitMqConsoleSubscriberExample\RabbitMqDefaultExchange.Subscriber.csproj", "{B6B41F86-F792-40C4-90C7-FAB21FDA2F48}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqFanoutExchange.Publisher", "RabbitMqFanoutExchange.Publisher\RabbitMqFanoutExchange.Publisher.csproj", "{6029BE31-A45E-4E20-9D3C-D3D325935D29}"
 EndProject

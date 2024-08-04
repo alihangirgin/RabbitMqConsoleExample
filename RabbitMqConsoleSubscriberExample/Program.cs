@@ -14,6 +14,8 @@ channel.BasicQos(0,1,false);
 
 var consumer = new EventingBasicConsumer(channel);
 
+Console.WriteLine("Waiting for messages.");
+
 consumer.Received += (sender, eventArgs) =>
 {
     var body = eventArgs.Body.ToArray();
