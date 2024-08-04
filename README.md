@@ -1,3 +1,7 @@
+**Temel Fonksiyonlar**
+
+<br>
+
 **QueueDeclare**, RabbitMQ'da bir kuyruk oluşturmak veya var olan bir kuyruğun özelliklerini almak için kullanılan bir yöntemdir. Bu yöntem, bir kuyruk oluşturulurken gerekli olan çeşitli seçenekleri ayarlamanıza olanak tanır. Kuyruklar, mesajların gönderilip alındığı yerlerdir ve RabbitMQ sistemindeki temel veri yapılarından biridir.
 
 **QueueDeclare Parametreleri**
@@ -12,7 +16,7 @@
 
 **arguments**: Kuyruğun özelliklerini daha ayrıntılı ayarlamak için bir sözlük nesnesi kullanılır. Örneğin, TTL (time-to-live), mesaj sınırları gibi özel ayarlar yapılabilir.
 
-<br><br>
+<br>
 
 **BasicPublish**, RabbitMQ'da bir üreticinin (producer) mesajları bir değişime (exchange) göndermesini sağlayan bir yöntemdir. Bu yöntem, mesajın hangi değişime gönderileceğini ve değişimin mesajı hangi kuyruğa yönlendireceğini belirler. BasicPublish, RabbitMQ'daki mesajlaşma sürecinin temel bir parçasıdır ve mesajların doğru bir şekilde iletilmesini sağlar.
 
@@ -26,7 +30,7 @@
 
 **body**: Gönderilecek mesajın içeriğidir. Bu, genellikle bir byte dizisi (byte[]) olarak gönderilir.
 
-<br><br>
+<br>
 
 **BasicConsum**e, RabbitMQ'da bir tüketicinin belirli bir kuyruğa abone olmasını sağlayan bir yöntemdir. Bu yöntem, kuyruktaki mesajları asenkron olarak alarak işlemeye başlar. Tüketici, kuyruğa gelen mesajları bir olay veya bir geri çağırma fonksiyonu aracılığıyla alır ve işler.
 
@@ -38,7 +42,7 @@
 
 **consumer**: Mesajları almak için kullanılacak tüketici nesnesini belirtir. Genellikle EventingBasicConsumer sınıfı kullanılır.
 
-<br><br>
+<br>
 
 **BasicQos** yöntemi, RabbitMQ'daki tüketicilerin mesajları nasıl aldığını kontrol etmenizi sağlayan bir yöntemdir. Bu yöntem, mesajların adil bir şekilde dağıtılmasını ve tüketicilerin aşırı yüklenmesini önlemeye yardımcı olur. Özellikle mesajların çok hızlı bir şekilde kuyruktan tüketiciye aktarılması durumunda faydalıdır.
 
