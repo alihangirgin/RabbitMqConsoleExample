@@ -9,14 +9,14 @@ var factory = new ConnectionFactory
 var connection = factory.CreateConnection();
 
 using var channel = connection.CreateModel();
-channel.ExchangeDeclare("logsFanout", ExchangeType.Fanout, true);
+channel.ExchangeDeclare("fanout-logs", ExchangeType.Fanout, true);
 
 
 for (int i = 0; i < 50; i++)
 {
     var message = $"log{i}";
     var messageBytes = Encoding.UTF8.GetBytes(message);
-    channel.BasicPublish("logsFanout", string.Empty, null, messageBytes); // Fanout için routing key kullanılmaz
+    channel.BasicPublish("fanout-logs", string.Empty, null, messageBytes); // Fanout için routing key kullanılmaz
     Console.WriteLine($"Message Sent:{i}");
 
 }

@@ -11,12 +11,12 @@ var connection = factory.CreateConnection();
 
 using var channel = connection.CreateModel();
 channel.BasicQos(0, 1, false);
-channel.ExchangeDeclare("logsFanout", ExchangeType.Fanout, true);
+channel.ExchangeDeclare("fanout-logs", ExchangeType.Fanout, true);
 
 // Geçici bir kuyruk oluştur
 var queueName = channel.QueueDeclare().QueueName;
 // Kuyruğu exchange'e bağla
-channel.QueueBind(queueName, "logsFanout", string.Empty);
+channel.QueueBind(queueName, "fanout-logs", string.Empty);
 
 var consumer = new EventingBasicConsumer(channel);
 
